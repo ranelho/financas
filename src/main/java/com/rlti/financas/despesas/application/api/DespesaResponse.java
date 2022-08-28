@@ -6,5 +6,5 @@ import lombok.Value;
 @Value
 @Builder
 public class DespesaResponse {
-	private Integer idDespesa;
+	private Long idDespesa;
 }

@@ -3,6 +3,8 @@ package com.rlti.financas.despesas.domain;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,12 +23,11 @@ public class Despesa {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	// @Column(columnDefinition = "uuid", name = "idDespesa", updatable = false,
-	// unique = true, nullable = false)
-	private Integer idDespesa;
+	private Long idDespesa;
 	@NotNull
 	private String descricao;
 	@NotNull
+	@Enumerated(EnumType.STRING)
 	private Categoria categoria;
 	@NotNull
 	private LocalDate dataPagamento;
