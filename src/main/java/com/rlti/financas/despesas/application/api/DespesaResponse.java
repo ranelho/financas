@@ -1,5 +1,8 @@
 package com.rlti.financas.despesas.application.api;
 
-public class DespesaResponse {
+import lombok.Value;
 
+@Value
+public class DespesaResponse {
+	private Integer idDespesa;
 }
