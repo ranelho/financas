@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+import com.rlti.financas.despesas.application.api.DespesaRequest;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +21,8 @@ public class Despesa {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	//@Column(columnDefinition = "uuid", name = "idDespesa", updatable = false, unique = true, nullable = false)
+	// @Column(columnDefinition = "uuid", name = "idDespesa", updatable = false,
+	// unique = true, nullable = false)
 	private Integer idDespesa;
 	@NotNull
 	private String descricao;
@@ -29,5 +32,11 @@ public class Despesa {
 	private LocalDate dataPagamento;
 	@NotNull
 	private Double valor;
-	
+
+	public Despesa(DespesaRequest despesaRequest) {
+		this.descricao = despesaRequest.getDescricao();
+		this.categoria = despesaRequest.getCategoria();
+		this.dataPagamento = despesaRequest.getDataPagamento();
+		this.valor = despesaRequest.getValor();
+	}
 }
