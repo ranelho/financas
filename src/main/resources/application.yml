@@ -1,3 +1,7 @@
+server:
+  servlet:
+    context-path: /financas/api
+
 spring:
   datasource:
     driverClassName: com.mysql.jdbc.Driver
