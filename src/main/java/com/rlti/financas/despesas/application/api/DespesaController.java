@@ -18,6 +18,9 @@ public class DespesaController implements DespesaApi {
 	public DespesaResponse postDespesa(@Valid DespesaRequest despesaRequest) {
 		log.info("[inicia] DespesaController - postDespesa");
 		DespesaResponse despesaCriada = despesaService.criaDespesa(despesaRequest);
+//		if(despesaRequest.getParcela() == 1) {
+//			log.info("[inicia] DespesaController - getParcela - " + despesaRequest.getParcela());
+//		}
 		log.info("[finaliza] DespesaController - postDespesa");		
 		return despesaCriada;
 	}

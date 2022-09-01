@@ -13,9 +13,11 @@ import javax.validation.constraints.NotNull;
 import com.rlti.financas.despesas.application.api.DespesaRequest;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Entity
@@ -29,8 +31,9 @@ public class Despesa {
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Categoria categoria;
-	@NotNull
-	private Integer parcela;
+	@NotNull	
+	private int parcela;
+	private String quantidadePacelas;
 	@NotNull
 	private LocalDate dataPagamento;
 	@NotNull
@@ -40,7 +43,9 @@ public class Despesa {
 		this.descricao = despesaRequest.getDescricao();
 		this.categoria = despesaRequest.getCategoria();
 		this.parcela = despesaRequest.getParcela();
+		this.quantidadePacelas = despesaRequest.getQuantidadePacelas();
 		this.dataPagamento = despesaRequest.getDataPagamento();
 		this.valor = despesaRequest.getValor();
 	}
+	
 }

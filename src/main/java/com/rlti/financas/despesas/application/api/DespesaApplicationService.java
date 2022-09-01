@@ -18,10 +18,23 @@ public class DespesaApplicationService implements DespesaService {
 	@Override
 	public DespesaResponse criaDespesa(DespesaRequest despesaRequest) {
 		log.info("[inicia] - DespesaResponse - criaDespesa");
-		Despesa despesa = despesaRepository.salva(new Despesa(despesaRequest));
-		log.info("[finaliza] - DespesaResponse - criaDespesa");
-		return DespesaResponse.builder()
-				.idDespesa(despesa.getIdDespesa())
-				.build();
+		if (despesaRequest.getParcela() == 1) {
+			String statusParcela = "1/1";
+			despesaRequest.setQuantidadePacelas(statusParcela);
+			Despesa despesa = despesaRepository.salva(new Despesa(despesaRequest));
+			log.info("[finaliza] - DespesaResponse - criaDespesa");
+			return DespesaResponse.builder().idDespesa(despesa.getIdDespesa()).build();
+
+		} else if (despesaRequest.getParcela() > 1) {
+			double valorParcela = despesaRequest.getValor() / despesaRequest.getParcela();
+			for (int count = 1; count <= despesaRequest.getParcela(); count++) {
+				String statusParcela = count + "/" + despesaRequest.getParcela();
+				despesaRequest.setQuantidadePacelas(statusParcela);
+				despesaRequest.setValor(valorParcela);
+				despesaRepository.salva(new Despesa(despesaRequest));
+				log.info("[finaliza] - DespesaResponse - criaDespesa");
+			}
+		}
+		return null;
 	}
 }
