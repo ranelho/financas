@@ -7,3 +7,4 @@ import com.rlti.financas.despesas.domain.Despesa;
 public interface DespesaSpringDataJPARepository extends JpaRepository<Despesa, Long>{
 
 }
+

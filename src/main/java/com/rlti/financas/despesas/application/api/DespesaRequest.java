@@ -14,6 +14,8 @@ public class DespesaRequest {
 	@NotNull
 	private Categoria categoria;
 	@NotNull
+	private Integer parcela;
+	@NotNull
 	private LocalDate dataPagamento;
 	@NotNull
 	private Double valor;

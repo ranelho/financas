@@ -30,6 +30,8 @@ public class Despesa {
 	@Enumerated(EnumType.STRING)
 	private Categoria categoria;
 	@NotNull
+	private Integer parcela;
+	@NotNull
 	private LocalDate dataPagamento;
 	@NotNull
 	private Double valor;
@@ -37,6 +39,7 @@ public class Despesa {
 	public Despesa(DespesaRequest despesaRequest) {
 		this.descricao = despesaRequest.getDescricao();
 		this.categoria = despesaRequest.getCategoria();
+		this.parcela = despesaRequest.getParcela();
 		this.dataPagamento = despesaRequest.getDataPagamento();
 		this.valor = despesaRequest.getValor();
 	}
