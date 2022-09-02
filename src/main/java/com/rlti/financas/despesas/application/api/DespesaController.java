@@ -1,5 +1,7 @@
 package com.rlti.financas.despesas.application.api;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -23,5 +25,12 @@ public class DespesaController implements DespesaApi {
 //		}
 		log.info("[finaliza] DespesaController - postDespesa");		
 		return despesaCriada;
+	}
+
+	@Override
+	public List<DespesaListResponse> getTodasDespesas() {
+		log.info("[inicia] DespesaController - getTodasDespesas");
+		log.info("[inicia] DespesaController - getTodasDespesas");
+		return null;
 	}
 }
