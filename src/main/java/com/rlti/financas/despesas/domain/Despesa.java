@@ -8,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import com.rlti.financas.despesas.application.api.DespesaRequest;
@@ -32,6 +33,7 @@ public class Despesa {
 	@Enumerated(EnumType.STRING)
 	private Categoria categoria;
 	@NotNull	
+	@Transient
 	private int parcela;
 	private String quantidadePacelas;
 	@NotNull
