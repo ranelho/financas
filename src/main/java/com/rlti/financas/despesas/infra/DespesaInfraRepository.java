@@ -43,4 +43,13 @@ public class DespesaInfraRepository implements DespesaRepository {
 		log.info("[finaliza] - DespesaInfraRepository - buscaDespesaAtravesId");
 		return despesa;
 	}
+
+	@Override
+	public void deletaDespesa(Despesa despesa) {
+		log.info("[inicia] DespesaInfraRepository - deletaDespesa");
+		despesaSpringDataJPARepository.delete(despesa);
+		log.info("[finaliza] DespesaInfraRepository - deletaDespesa");		
+	}
+
+	
 }

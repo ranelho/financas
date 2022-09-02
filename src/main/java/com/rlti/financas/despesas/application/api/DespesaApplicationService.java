@@ -22,13 +22,13 @@ public class DespesaApplicationService implements DespesaService {
 	
 	@Override
 	public DespesaResponse criaDespesa(DespesaRequest despesaRequest) {
-		log.info("[inicia] - DespesaResponse - criaDespesa");
+		log.info("[inicia] - DespesaApplicationService - criaDespesa");
 		
 		if (despesaRequest.getParcela() == 1) {
 			statusParcela = "1/1";
 			despesaRequest.setQuantidadePacelas(statusParcela);
 			Despesa despesa = despesaRepository.salva(new Despesa(despesaRequest));
-			log.info("[finaliza] - DespesaResponse - criaDespesaUnica");
+			log.info("[finaliza] - DespesaApplicationService - criaDespesaUnica");
 			return DespesaResponse.builder().idDespesa(despesa.getIdDespesa()).build();
 			
 		} else if (despesaRequest.getParcela() > 1) {
@@ -45,7 +45,7 @@ public class DespesaApplicationService implements DespesaService {
 				despesaRequest.setQuantidadePacelas(statusParcela);
 				despesaRequest.setValor(valorParcela);
 				despesaRepository.salva(new Despesa(despesaRequest));				
-				log.info("[finaliza] - DespesaResponse - criaDespesaParcelada");				
+				log.info("[finaliza] - DespesaApplicationService - criaDespesaParcelada");				
 			}
 		}
 		return null;
@@ -53,26 +53,25 @@ public class DespesaApplicationService implements DespesaService {
 
 	@Override
 	public List<DespesaListResponse> buscaTodasDespesas() {
-		log.info("[inicia] - DespesaResponse - buscaTodasDespesas");
+		log.info("[inicia] - DespesaApplicationService - buscaTodasDespesas");
 		List<Despesa> despesas = despesaRepository.buscaTodasDespesa();
-		log.info("[finaliza] - DespesaResponse - buscaTodasDespesas");
+		log.info("[finaliza] - DespesaApplicationService - buscaTodasDespesas");
 		return DespesaListResponse.converte(despesas);
 	}
 
 	@Override
 	public DespesaDetalhadoResponse buscaClienteAtravesId(Long idDespesa) {
-		log.info("[inicia] - DespesaResponse - buscaClienteAtravesId");
+		log.info("[inicia] - DespesaApplicationService - buscaClienteAtravesId");
 		log.info("{idDespesa} - {}", idDespesa);
 		Despesa despesa = despesaRepository.buscaDespesaAtravesId(idDespesa);
-		log.info("[finaliza] - DespesaResponse - buscaClienteAtravesId");
+		log.info("[finaliza] - DespesaApplicationService - buscaClienteAtravesId");
 		return new DespesaDetalhadoResponse(despesa);
 	}
 
 	@Override
-	public DespesaResponse deletaDespesaAtravesId(Long idDespesa) {
-		log.info("[inicia] - DespesaResponse - deletaDespesaAtravesId");
-		log.info("{idDespesa} - {}", idDespesa);
-		log.info("[finaliza] - DespesaResponse - deletaDespesaAtravesId");
-		return null;
-	}
+	public void deletaDespesaAtravesId(Long idDespesa) {
+		log.info("[inicia] DespesaApplicationService");
+		Despesa despesa = despesaRepository.buscaDespesaAtravesId(idDespesa);
+		despesaRepository.deletaDespesa(despesa);
+	}	
 }

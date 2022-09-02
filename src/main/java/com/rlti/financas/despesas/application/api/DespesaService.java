@@ -6,5 +6,6 @@ public interface DespesaService {
 	DespesaResponse criaDespesa(DespesaRequest despesaRequest);
 	List<DespesaListResponse> buscaTodasDespesas();
 	DespesaDetalhadoResponse buscaClienteAtravesId(Long idDespesa);
-	DespesaResponse deletaDespesaAtravesId(Long idDespesa);
+	void deletaDespesaAtravesId(Long idDespesa);
+
 }
