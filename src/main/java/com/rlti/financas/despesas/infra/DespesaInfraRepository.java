@@ -1,5 +1,7 @@
 package com.rlti.financas.despesas.infra;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.rlti.financas.despesas.application.repository.DespesaRepository;
@@ -21,5 +23,13 @@ public class DespesaInfraRepository implements DespesaRepository {
 		despesaSpringDataJPARepository.save(despesa);
 		log.info("[finaliza] - DespesaInfraRepository - salva");
 		return despesa;
+	}
+
+	@Override
+	public List<Despesa> buscaTodasDespesa() {
+		log.info("[inicia] - DespesaInfraRepository - buscaTodasDespesa");
+		List<Despesa> todasDispesas = despesaSpringDataJPARepository.findAll();
+		log.info("[finaliza] - DespesaInfraRepository - buscaTodasDespesa");
+		return todasDispesas;
 	}
 }

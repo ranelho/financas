@@ -1,6 +1,7 @@
 package com.rlti.financas.despesas.application.api;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -48,5 +49,13 @@ public class DespesaApplicationService implements DespesaService {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public List<DespesaListResponse> buscaTodasDespesas() {
+		log.info("[inicia] - DespesaResponse - buscaTodasDespesas");
+		List<Despesa> despesas = despesaRepository.buscaTodasDespesa();
+		log.info("[finaliza] - DespesaResponse - buscaTodasDespesas");
+		return DespesaListResponse.converte(despesas);
 	}
 }

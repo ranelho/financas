@@ -20,9 +20,6 @@ public class DespesaController implements DespesaApi {
 	public DespesaResponse postDespesa(@Valid DespesaRequest despesaRequest) {
 		log.info("[inicia] DespesaController - postDespesa");
 		DespesaResponse despesaCriada = despesaService.criaDespesa(despesaRequest);
-//		if(despesaRequest.getParcela() == 1) {
-//			log.info("[inicia] DespesaController - getParcela - " + despesaRequest.getParcela());
-//		}
 		log.info("[finaliza] DespesaController - postDespesa");		
 		return despesaCriada;
 	}
@@ -30,7 +27,15 @@ public class DespesaController implements DespesaApi {
 	@Override
 	public List<DespesaListResponse> getTodasDespesas() {
 		log.info("[inicia] DespesaController - getTodasDespesas");
-		log.info("[inicia] DespesaController - getTodasDespesas");
+		List<DespesaListResponse> despesas = despesaService.buscaTodasDespesas();
+		log.info("[finaliza] DespesaController - getTodasDespesas");
+		return despesas;
+	}
+
+	@Override
+	public DespesaDetalhadoResponse getDespesaAtravesId(Long idDespesa) {
+		log.info("[inicia] DespesaController - getDespesaAtravesId");
+		log.info("[finaliza] DespesaController - getDespesaAtravesId");
 		return null;
 	}
 }
