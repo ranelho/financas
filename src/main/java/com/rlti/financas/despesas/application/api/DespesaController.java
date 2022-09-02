@@ -45,6 +45,7 @@ public class DespesaController implements DespesaApi {
 	public void deletaDespesaAtravesId(Long idDespesa) {
 		log.info("[inicia] DespesaController - deletaDespesaAtravesId");
 		log.info("[idDespesa] {}", idDespesa);	
+		DespesaResponse despesaResponse = despesaService.deletaDespesaAtravesId(idDespesa);
 		log.info("[finaliza] DespesaController - deletaDespesaAtravesId");
 	}
 
