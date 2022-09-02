@@ -35,6 +35,7 @@ public class DespesaController implements DespesaApi {
 	@Override
 	public DespesaDetalhadoResponse getDespesaAtravesId(Long idDespesa) {
 		log.info("[inicia] DespesaController - getDespesaAtravesId");
+		log.info("[idDespesa] {}", idDespesa);		
 		log.info("[finaliza] DespesaController - getDespesaAtravesId");
 		return null;
 	}

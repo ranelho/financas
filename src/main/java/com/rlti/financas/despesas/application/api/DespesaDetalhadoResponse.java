@@ -16,6 +16,5 @@ public class DespesaDetalhadoResponse {
 	private LocalDate dataPagamento;
 	private Double valor;
 	
-	
-	
+		
 }
