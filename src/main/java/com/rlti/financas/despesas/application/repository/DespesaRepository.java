@@ -7,4 +7,5 @@ import com.rlti.financas.despesas.domain.Despesa;
 public interface DespesaRepository {
 	Despesa salva(Despesa despesa);
 	List<Despesa> buscaTodasDespesa();
+	Despesa buscaDespesaAtravesId(Long idDespesa);
 }

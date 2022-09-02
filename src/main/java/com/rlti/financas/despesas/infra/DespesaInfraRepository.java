@@ -2,10 +2,12 @@ package com.rlti.financas.despesas.infra;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import com.rlti.financas.despesas.application.repository.DespesaRepository;
 import com.rlti.financas.despesas.domain.Despesa;
+import com.rlti.financas.handler.APIException;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -31,5 +33,14 @@ public class DespesaInfraRepository implements DespesaRepository {
 		List<Despesa> todasDispesas = despesaSpringDataJPARepository.findAll();
 		log.info("[finaliza] - DespesaInfraRepository - buscaTodasDespesa");
 		return todasDispesas;
+	}
+
+	@Override
+	public Despesa buscaDespesaAtravesId(Long idDespesa) {
+		log.info("[inicia] - DespesaInfraRepository - buscaDespesaAtravesId");
+		Despesa despesa = despesaSpringDataJPARepository.findById(idDespesa)
+				.orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND,"Despesa não encontrada!"));;
+		log.info("[finaliza] - DespesaInfraRepository - buscaDespesaAtravesId");
+		return despesa;
 	}
 }

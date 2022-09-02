@@ -63,7 +63,8 @@ public class DespesaApplicationService implements DespesaService {
 	public DespesaDetalhadoResponse buscaClienteAtravesId(Long idDespesa) {
 		log.info("[inicia] - DespesaResponse - buscaClienteAtravesId");
 		log.info("{idDespesa} - {}", idDespesa);
+		Despesa despesa = despesaRepository.buscaDespesaAtravesId(idDespesa);
 		log.info("[finaliza] - DespesaResponse - buscaClienteAtravesId");
-		return null;
+		return new DespesaDetalhadoResponse(despesa);
 	}
 }
