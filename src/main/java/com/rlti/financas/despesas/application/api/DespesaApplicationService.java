@@ -3,6 +3,8 @@ package com.rlti.financas.despesas.application.api;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Service;
 
 import com.rlti.financas.despesas.application.repository.DespesaRepository;
@@ -73,5 +75,16 @@ public class DespesaApplicationService implements DespesaService {
 		log.info("[inicia] DespesaApplicationService");
 		Despesa despesa = despesaRepository.buscaDespesaAtravesId(idDespesa);
 		despesaRepository.deletaDespesa(despesa);
+	}
+
+	@Override
+	public void patchAlteraDespesa(Long idDespesa, @Valid DespesaAlteracaoRequest despesaAlteracaoRequest) {
+		log.info("[inicia] - DespesaApplicationService - patchAlteraDespesa");
+		log.info("{idDespesa} - {}", idDespesa);
+		Despesa despesa = despesaRepository.buscaDespesaAtravesId(idDespesa);
+		despesa.altera(despesaAlteracaoRequest);
+		despesaRepository.salva(despesa);
+		log.info("[finaliza] - DespesaApplicationService - patchAlteraDespesa");
+		
 	}	
 }

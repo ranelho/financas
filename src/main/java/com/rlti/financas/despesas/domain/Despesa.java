@@ -9,8 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import com.rlti.financas.despesas.application.api.DespesaAlteracaoRequest;
 import com.rlti.financas.despesas.application.api.DespesaRequest;
 
 import lombok.AccessLevel;
@@ -43,11 +45,17 @@ public class Despesa {
 
 	public Despesa(DespesaRequest despesaRequest) {
 		this.descricao = despesaRequest.getDescricao();
-		this.categoria = despesaRequest.getCategoria();
-		this.parcela = despesaRequest.getParcela();
+		this.categoria = despesaRequest.getCategoria();		
 		this.quantidadePacelas = despesaRequest.getQuantidadePacelas();
 		this.dataPagamento = despesaRequest.getDataPagamento();
 		this.valor = despesaRequest.getValor();
+	}
+
+	public void altera(@Valid DespesaAlteracaoRequest despesaAlteracaoRequest) {
+		this.descricao = despesaAlteracaoRequest.getDescricao();
+		this.categoria = despesaAlteracaoRequest.getCategoria();
+		this.dataPagamento = despesaAlteracaoRequest.getDataPagamento();
+		this.valor = despesaAlteracaoRequest.getValor();		
 	}
 	
 }

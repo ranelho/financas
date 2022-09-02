@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,5 +35,9 @@ public interface DespesaApi {
 	@DeleteMapping(value = "/{idDespesa}") 
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	void deletaDespesaAtravesId(@PathVariable Long idDespesa);
-	
+		
+	@PatchMapping(value = "/{idDespesa}") 
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	void patchAlteraDespesa(@PathVariable Long idDespesa,
+			@Valid @RequestBody DespesaAlteracaoRequest despesaAlteracaoRequest);
 }

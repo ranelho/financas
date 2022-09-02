@@ -49,5 +49,15 @@ public class DespesaController implements DespesaApi {
 		log.info("[finaliza] DespesaController - deletaDespesaAtravesId");
 	}
 
+	@Override
+	public void patchAlteraDespesa(Long idDespesa, @Valid DespesaAlteracaoRequest despesaAlteracaoRequest) {
+		log.info("[inicia] DespesaController - patchAlteraDespesa");	
+		log.info("[idDespesa] {}", idDespesa);		
+		despesaService.patchAlteraDespesa(idDespesa,despesaAlteracaoRequest);
+		log.info("[finaliza] DespesaController - patchAlteraDespesa");
+	}
+
+	
+
 	
 }
