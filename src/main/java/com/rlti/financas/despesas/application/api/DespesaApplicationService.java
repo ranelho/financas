@@ -58,4 +58,12 @@ public class DespesaApplicationService implements DespesaService {
 		log.info("[finaliza] - DespesaResponse - buscaTodasDespesas");
 		return DespesaListResponse.converte(despesas);
 	}
+
+	@Override
+	public DespesaDetalhadoResponse buscaClienteAtravesId(Long idDespesa) {
+		log.info("[inicia] - DespesaResponse - buscaClienteAtravesId");
+		log.info("{idDespesa} - {}", idDespesa);
+		log.info("[finaliza] - DespesaResponse - buscaClienteAtravesId");
+		return null;
+	}
 }

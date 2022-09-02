@@ -36,6 +36,7 @@ public class DespesaController implements DespesaApi {
 	public DespesaDetalhadoResponse getDespesaAtravesId(Long idDespesa) {
 		log.info("[inicia] DespesaController - getDespesaAtravesId");
 		log.info("[idDespesa] {}", idDespesa);		
+		DespesaDetalhadoResponse despesaDetalhadoResponse = despesaService.buscaClienteAtravesId(idDespesa);
 		log.info("[finaliza] DespesaController - getDespesaAtravesId");
 		return null;
 	}
