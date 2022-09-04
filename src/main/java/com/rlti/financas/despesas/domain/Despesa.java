@@ -12,6 +12,7 @@ import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.rlti.financas.despesas.application.api.DespesaAlteracaoRequest;
 import com.rlti.financas.despesas.application.api.DespesaRequest;
 
@@ -39,6 +40,7 @@ public class Despesa {
 	private int parcela;
 	private String quantidadePacelas;
 	@NotNull
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private LocalDate dataPagamento;
 	@NotNull
 	private Double valor;
@@ -56,6 +58,5 @@ public class Despesa {
 		this.categoria = despesaAlteracaoRequest.getCategoria();
 		this.dataPagamento = despesaAlteracaoRequest.getDataPagamento();
 		this.valor = despesaAlteracaoRequest.getValor();		
-	}
-	
+	}	
 }

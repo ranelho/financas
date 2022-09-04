@@ -1,9 +1,11 @@
 package com.rlti.financas.despesas.application.api;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
@@ -55,6 +57,15 @@ public class DespesaController implements DespesaApi {
 		log.info("[idDespesa] {}", idDespesa);		
 		despesaService.patchAlteraDespesa(idDespesa,despesaAlteracaoRequest);
 		log.info("[finaliza] DespesaController - patchAlteraDespesa");
+	}
+
+	@Override
+	public List<DespesaListResponse> getDespesasPorData(LocalDate dataPagamento) {		
+		log.info("[inicia] DespesaController - getDespesaPorData");
+		log.info("[dataPagamento] {} ", dataPagamento);
+		List<DespesaListResponse> despesas = despesaService.getDespesasPorData(dataPagamento);
+		log.info("[finaliza] DespesaController - getDespesaPorData");
+		return despesas;
 	}
 
 	

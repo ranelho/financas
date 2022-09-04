@@ -1,5 +1,6 @@
 package com.rlti.financas.despesas.infra;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -49,6 +50,14 @@ public class DespesaInfraRepository implements DespesaRepository {
 		log.info("[inicia] DespesaInfraRepository - deletaDespesa");
 		despesaSpringDataJPARepository.delete(despesa);
 		log.info("[finaliza] DespesaInfraRepository - deletaDespesa");		
+	}
+
+	@Override
+	public List<Despesa> buscaTodasDespesaPorData(LocalDate dataPagamento) {
+		log.info("[inicia] DespesaInfraRepository - buscaTodasDespesaPorData");
+		List<Despesa> despesa = despesaSpringDataJPARepository.findAllPorDataPagamento(dataPagamento);
+		log.info("[finaliza] DespesaInfraRepository - buscaTodasDespesaPorData");
+		return despesa;
 	}
 
 	

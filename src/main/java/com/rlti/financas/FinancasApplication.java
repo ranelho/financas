@@ -17,11 +17,6 @@ public class FinancasApplication {
 	@GetMapping
 	public String getHomeTeste() throws ParseException {
 
-		LocalDate hoje = LocalDate.now();
-		System.out.println(hoje);
-		LocalDate proximoMes = hoje.plusMonths(1);
-		System.out.println(proximoMes);
-		
 		return "Despesa - API Home";
 		
 	}

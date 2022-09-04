@@ -20,12 +20,11 @@ public class DespesaApplicationService implements DespesaService {
 
 	private final DespesaRepository despesaRepository;
 	String statusParcela;
-	LocalDate proximoMes;
+	LocalDate dataPagameto;
 	
 	@Override
 	public DespesaResponse criaDespesa(DespesaRequest despesaRequest) {
-		log.info("[inicia] - DespesaApplicationService - criaDespesa");
-		
+		log.info("[inicia] - DespesaApplicationService - criaDespesa");		
 		if (despesaRequest.getParcela() == 1) {
 			statusParcela = "1/1";
 			despesaRequest.setQuantidadePacelas(statusParcela);
@@ -33,24 +32,25 @@ public class DespesaApplicationService implements DespesaService {
 			log.info("[finaliza] - DespesaApplicationService - criaDespesaUnica");
 			return DespesaResponse.builder().idDespesa(despesa.getIdDespesa()).build();
 			
-		} else if (despesaRequest.getParcela() > 1) {
-			
-			double valorParcela = despesaRequest.getValor() / despesaRequest.getParcela();	
-			
-			for (int count = 1; count <= despesaRequest.getParcela(); count++) {
-				
-				statusParcela = count + "/" + despesaRequest.getParcela();
-				if (count > 1) {
-					proximoMes = despesaRequest.getDataPagamento().plusMonths(1);	
-					despesaRequest.setDataPagamento(proximoMes);
-				}			
+		} else if (despesaRequest.getParcela() > 1) {			
+			double valorParcela = despesaRequest.getValor() / despesaRequest.getParcela();				
+			for (int count = 1; count <= despesaRequest.getParcela(); count++) {				
+				statusParcela = count + "/" + despesaRequest.getParcela();					
+				despesaRequest.setDataPagamento(validaMes(despesaRequest.getDataPagamento(), count));				
 				despesaRequest.setQuantidadePacelas(statusParcela);
 				despesaRequest.setValor(valorParcela);
-				despesaRepository.salva(new Despesa(despesaRequest));				
-				log.info("[finaliza] - DespesaApplicationService - criaDespesaParcelada");				
+				despesaRepository.salva(new Despesa(despesaRequest));		
+				log.info("[finaliza] - DespesaApplicationService - criaDespesaParcelada");						
 			}
+		//	return lista;	
 		}
 		return null;
+	}	
+	
+	private LocalDate validaMes(LocalDate proximoMes, int count) {		
+		if (count == 1) dataPagameto = proximoMes.plusMonths(0);		
+		else if (count > 1) dataPagameto = proximoMes.plusMonths(1);
+		return dataPagameto;			
 	}
 
 	@Override
@@ -84,7 +84,14 @@ public class DespesaApplicationService implements DespesaService {
 		Despesa despesa = despesaRepository.buscaDespesaAtravesId(idDespesa);
 		despesa.altera(despesaAlteracaoRequest);
 		despesaRepository.salva(despesa);
-		log.info("[finaliza] - DespesaApplicationService - patchAlteraDespesa");
-		
+		log.info("[finaliza] - DespesaApplicationService - patchAlteraDespesa");		
+	}
+
+	@Override
+	public List<DespesaListResponse> getDespesasPorData(LocalDate dataPagamento) {
+		log.info("[inicia] - DespesaApplicationService - getDespesasPorData");
+		List<Despesa> despesa = despesaRepository.buscaTodasDespesaPorData(dataPagamento);
+		log.info("[finaliza] - DespesaApplicationService - getDespesasPorData");
+		return DespesaListResponse.converte(despesa);
 	}	
 }
