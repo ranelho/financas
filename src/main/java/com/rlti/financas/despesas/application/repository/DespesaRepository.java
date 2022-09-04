@@ -11,4 +11,5 @@ public interface DespesaRepository {
 	Despesa buscaDespesaAtravesId(Long idDespesa);
 	void deletaDespesa(Despesa despesa);
 	List<Despesa> buscaTodasDespesaPorData(LocalDate dataPagamento);
+	List<Despesa> buscaTodasDespesaPeriodo(LocalDate dataInicial, LocalDate dataFinal);
 }

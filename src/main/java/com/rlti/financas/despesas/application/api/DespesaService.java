@@ -12,5 +12,6 @@ public interface DespesaService {
 	void deletaDespesaAtravesId(Long idDespesa);
 	void patchAlteraDespesa(Long idDespesa, @Valid DespesaAlteracaoRequest despesaAlteracaoRequest);
 	List<DespesaListResponse> getDespesasPorData(LocalDate dataPagamento);
+	List<DespesaListResponse> buscaTodasDespesasPeriodo(LocalDate dataInicial, LocalDate dataFinal);
 
 }

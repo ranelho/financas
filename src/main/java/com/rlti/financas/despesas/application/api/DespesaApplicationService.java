@@ -93,5 +93,15 @@ public class DespesaApplicationService implements DespesaService {
 		List<Despesa> despesa = despesaRepository.buscaTodasDespesaPorData(dataPagamento);
 		log.info("[finaliza] - DespesaApplicationService - getDespesasPorData");
 		return DespesaListResponse.converte(despesa);
-	}	
+	}
+
+	@Override
+	public List<DespesaListResponse> buscaTodasDespesasPeriodo(LocalDate dataInicial, LocalDate dataFinal) {
+		log.info("[inicia] - DespesaApplicationService - buscaTodasDespesasPeriodo");
+		List<Despesa> despesa = despesaRepository.buscaTodasDespesaPeriodo(dataInicial, dataFinal);
+		log.info("[final] - DespesaApplicationService - buscaTodasDespesasPeriodo");
+		return DespesaListResponse.converte(despesa);
+	}
+
+	
 }

@@ -37,6 +37,11 @@ public interface DespesaApi {
 	@ResponseStatus(code = HttpStatus.OK)
 	List<DespesaListResponse> getDespesasPorData(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataPagamento);
 
+	@GetMapping(value = "/periodo/{dataInicial},{dataFinal}")
+	@ResponseStatus(code = HttpStatus.OK)
+	List<DespesaListResponse> getDespesasPorPeriodo(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataInicial,
+													@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataFinal);
+	
 	@DeleteMapping(value = "/{idDespesa}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	void deletaDespesaAtravesId(@PathVariable Long idDespesa);

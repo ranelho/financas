@@ -60,5 +60,13 @@ public class DespesaInfraRepository implements DespesaRepository {
 		return despesa;
 	}
 
+	@Override
+	public List<Despesa> buscaTodasDespesaPeriodo(LocalDate dataInicial, LocalDate dataFinal) {
+		log.info("[inicia] DespesaInfraRepository - buscaTodasDespesaPeriodo");
+		List<Despesa> despesa = despesaSpringDataJPARepository.findALLPeriodo(dataInicial, dataFinal);
+		log.info("[final] DespesaInfraRepository - buscaTodasDespesaPeriodo");
+		return despesa;
+	}
+
 	
 }

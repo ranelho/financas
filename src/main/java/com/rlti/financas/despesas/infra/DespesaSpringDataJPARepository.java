@@ -10,8 +10,11 @@ import com.rlti.financas.despesas.domain.Despesa;
 
 public interface DespesaSpringDataJPARepository extends JpaRepository<Despesa, Long>{
 
-	@Query(value = "SELECT * FROM despesa t WHERE data_pagamento = ?1 ", nativeQuery = true)	
+	@Query(value = "SELECT * FROM despesa WHERE data_pagamento = ?1 ", nativeQuery = true)	
 	List<Despesa> findAllPorDataPagamento(LocalDate dataPagamento);
+
+	@Query(value = "SELECT * FROM despesa WHERE data_pagamento >= ?1 AND data_pagamento <= ?2", nativeQuery = true)	
+	List<Despesa> findALLPeriodo(LocalDate dataInicial, LocalDate dataFinal);	
 
 }
 
