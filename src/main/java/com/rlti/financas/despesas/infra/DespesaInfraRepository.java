@@ -21,52 +21,51 @@ public class DespesaInfraRepository implements DespesaRepository {
 	private final DespesaSpringDataJPARepository despesaSpringDataJPARepository;
 
 	@Override
-	public Despesa salva(Despesa despesa) {
+	public Despesa salva(Despesa despesas) {
 		log.info("[inicia] - DespesaInfraRepository - salva");
-		despesaSpringDataJPARepository.save(despesa);
+		despesaSpringDataJPARepository.save(despesas);
 		log.info("[finaliza] - DespesaInfraRepository - salva");
-		return despesa;
+		return despesas;
 	}
 
 	@Override
 	public List<Despesa> buscaTodasDespesa() {
 		log.info("[inicia] - DespesaInfraRepository - buscaTodasDespesa");
-		List<Despesa> todasDispesas = despesaSpringDataJPARepository.findAll();
+		List<Despesa> todasDespesas = despesaSpringDataJPARepository.findAll();
 		log.info("[finaliza] - DespesaInfraRepository - buscaTodasDespesa");
-		return todasDispesas;
+		return todasDespesas;
 	}
 
 	@Override
 	public Despesa buscaDespesaAtravesId(Long idDespesa) {
 		log.info("[inicia] - DespesaInfraRepository - buscaDespesaAtravesId");
-		Despesa despesa = despesaSpringDataJPARepository.findById(idDespesa)
-				.orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND,"Despesa não encontrada!"));;
+		Despesa despesas = despesaSpringDataJPARepository.findById(idDespesa)
+				.orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND,"Despesa não encontrada!"));
 		log.info("[finaliza] - DespesaInfraRepository - buscaDespesaAtravesId");
-		return despesa;
+		return despesas;
 	}
 
 	@Override
-	public void deletaDespesa(Despesa despesa) {
+	public void deletaDespesa(Despesa despesas) {
 		log.info("[inicia] DespesaInfraRepository - deletaDespesa");
-		despesaSpringDataJPARepository.delete(despesa);
+		despesaSpringDataJPARepository.delete(despesas);
 		log.info("[finaliza] DespesaInfraRepository - deletaDespesa");		
 	}
 
 	@Override
 	public List<Despesa> buscaTodasDespesaPorData(LocalDate dataPagamento) {
 		log.info("[inicia] DespesaInfraRepository - buscaTodasDespesaPorData");
-		List<Despesa> despesa = despesaSpringDataJPARepository.findAllPorDataPagamento(dataPagamento);
-		log.info("[finaliza] DespesaInfraRepository - buscaTodasDespesaPorData");
-		return despesa;
+		List<Despesa> despesas = despesaSpringDataJPARepository.findAllPorDataPagamento(dataPagamento);
+		log.info("[finaliza] DespesaInfraRepository - buscaTodasDespesaPorData");		
+		return despesas;
 	}
 
 	@Override
 	public List<Despesa> buscaTodasDespesaPeriodo(LocalDate dataInicial, LocalDate dataFinal) {
 		log.info("[inicia] DespesaInfraRepository - buscaTodasDespesaPeriodo");
-		List<Despesa> despesa = despesaSpringDataJPARepository.findALLPeriodo(dataInicial, dataFinal);
+		List<Despesa> despesas = despesaSpringDataJPARepository.findALLPeriodo(dataInicial, dataFinal);
 		log.info("[final] DespesaInfraRepository - buscaTodasDespesaPeriodo");
-		return despesa;
+		return despesas;
 	}
-
 	
 }

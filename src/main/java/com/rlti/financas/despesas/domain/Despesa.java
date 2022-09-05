@@ -58,5 +58,5 @@ public class Despesa {
 		this.categoria = despesaAlteracaoRequest.getCategoria();
 		this.dataPagamento = despesaAlteracaoRequest.getDataPagamento();
 		this.valor = despesaAlteracaoRequest.getValor();		
-	}	
+	}
 }

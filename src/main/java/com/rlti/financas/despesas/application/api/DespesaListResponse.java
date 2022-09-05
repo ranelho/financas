@@ -22,6 +22,12 @@ public class DespesaListResponse {
 		return despesas.stream()
 				.map(DespesaListResponse::new)
 				.collect(Collectors.toList());
+	}	
+	
+	public static double SomaValor(List<DespesaListResponse> despesas) {
+		return despesas.stream()
+		.mapToDouble(DespesaListResponse::getValor)
+		.sum();	
 	}
 	
 	private DespesaListResponse(Despesa despesa) {
@@ -33,4 +39,13 @@ public class DespesaListResponse {
 		this.valor = despesa.getValor();
 	}
 	
+	
+	public DespesaListResponse(String parcela, double valor) {
+		this.idDespesa = null;
+		this.categoria = null;
+		this.descricao = "";
+		this.dataPagamento = null;
+		this.quantidadePacelas = parcela;
+		this.valor = valor;
+	}
 }
